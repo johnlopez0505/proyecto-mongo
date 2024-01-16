@@ -18,9 +18,11 @@ router.post('/login', async (req, res) => {
 
     if (user && bcrypt.compareSync(password, user.password)) {
         req.session.user = user; // Almacenamos el usuario en la sesión
-        res.send('Inicio de sesión exitoso');
+        //res.send('Inicio de sesión exitoso');
+        res.render('mensaje',{mensaje:'Inicio correcto'});
     } else {
-        res.send('Credenciales incorrectas');
+        //res.send('Credenciales incorrectas');
+        res.render('mensaje',{mensaje:'error al iniciar session'});
     }
 });
 

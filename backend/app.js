@@ -27,7 +27,11 @@ app.use(session({
 
 // Middleware para pasar información de sesión a las vistas
 app.use((req, res, next) => {
-    res.locals.currentUser = req.session.user;
+    res.locals.currentUser = req.session.user || null;
+
+    if (!req.session.user && !req.path.startsWith("/auth/login")) {
+        return res.redirect("/auth/login");
+    }
     next();
   });
 

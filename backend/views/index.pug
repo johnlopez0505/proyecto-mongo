@@ -3,7 +3,7 @@ html
         title Bienvenidos
         
     body 
-        h1(style="width:50%; margin:auto; text-align:center" ) Bienvenido #{currenUser ? currentUser.Username : 'Invitado'} 
+        h1(style="width:50%; margin:auto; text-align:center" ) Bienvenido #{currentUser ? currentUser.username : 'Invitado'} 
         
 
         if !currentUser
@@ -13,3 +13,6 @@ html
                         a(href="/auth/login") Sing in (entrar en el sistema)
                     li 
                         a(href="/auth/register") Sing up (resgistrarte)
+        else 
+            p 
+                a(href='/aurh/logout') logout
