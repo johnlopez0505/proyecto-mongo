@@ -1,0 +1,15 @@
+html 
+    head 
+        title Bienvenidos
+        
+    body 
+        h1(style="width:50%; margin:auto; text-align:center" ) Bienvenido #{currenUser ? currentUser.Username : 'Invitado'} 
+        
+
+        if !currentUser
+            div(style="width:50%; margin:auto;" )
+                ul(style="list-style-type:none;") 
+                    li  
+                        a(href="/auth/login") Sing in (entrar en el sistema)
+                    li 
+                        a(href="/auth/register") Sing up (resgistrarte)
