@@ -27,13 +27,19 @@ app.use(session({
 
 // Middleware para pasar información de sesión a las vistas
 app.use((req, res, next) => {
-    res.locals.currentUser = req.session.user || null;
-
-    if (!req.session.user && !req.path.startsWith("/auth/login")) {
-        return res.redirect("/auth/login");
+  res.locals.currentUser = req.session.user || null;
+  if (!req.session.user){
+    if(req.path.startsWith("/auth/login") || req.path.startsWith("/auth/register")){
+      // Si el usuario está intentando acceder a la página de login o registro, permitir el acceso.
+      return next();
+    }else{
+      // Si el usuario no está autenticado y no está intentando acceder a las páginas de login o registro,
+      // redirigir a la página de login.
+      return res.redirect("/auth/login");
     }
-    next();
-  });
+  }
+  next();
+});
 
 // nos conectamos a la base de datos 
 mongoose.connect(process.env.MONGO_URI);

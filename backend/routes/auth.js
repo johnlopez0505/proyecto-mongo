@@ -11,20 +11,25 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     const user = await User.findOne({ username });
+    //console.log(user);
 
     if (user && bcrypt.compareSync(password, user.password)) {
-        req.session.user = user; // Almacenamos el usuario en la sesión
+        user.password = "pepito perez"; 
+        req.session.user = user;
         //res.send('Inicio de sesión exitoso');
-        res.render('mensaje',{mensaje:'Inicio correcto'});
+        //res.render('mensaje',{mensaje:'Inicio correcto'});
+        res.redirect('/auth');
     } else {
         //res.send('Credenciales incorrectas');
         res.render('mensaje',{mensaje:'error al iniciar session'});
     }
 });
+
 
 router.get('/register', (req, res) => {
     res.render('register');
@@ -46,26 +51,8 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.get('/login',(req,res)=>{
-    res.render('login');
-})
 
-router.post('/login'),async (req,res)=>{
-    const {username, password} = req.body;
-    //verificar credenciales
-    const user = await User.findOne(
-        {username: username}
-    );
-    if(user && bcrypt.compareSync(password, user.password)){
-        user.password = "";
-        res.send("Credenciales correctas")
-        req.session.user = user;
-    }
-    {
-        res.send("Credenciales incorrectas")
-    }
 
-}
 
 router.get('/logout', (req, res) => {
     req.session.destroy();

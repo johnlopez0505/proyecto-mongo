@@ -9,18 +9,27 @@ html
             h1(class="text-center") Alta en el sistema 
             form(action="/auth/register",method="post")
                 div(class="input-group mb-2 " style="width: 500px" class="mx-auto")
-                    label(for="username" style="width: 200px;" class="input-group-text") Nombre de usuario 
-                    input.form-control(type="text", name="username", id="username",required)
+                    label(for="username" style="width: 200px; background-color: 2a6e6b; color:white" 
+                        class="input-group-text") Nombre de usuario 
+                    input.form-control(type="text", name="username", id="username",required,
+                        style="border:2px solid #2a6e6b")
                 br
 
                 div(class="input-group mb-2 " style="width: 500px" class="mx-auto")
-                    label(for="password" style="width: 200px;" class="input-group-text") Contraseña
-                    input.form-control(type="text", name="password", id="password",required)
+                    label(for="password" style="width: 200px; background-color: 2a6e6b; color:white" 
+                        class="input-group-text") Contraseña
+                    input.form-control(type="text", name="password", id="password",required,
+                        style="border:2px solid #2a6e6b")
                 br
 
                 div(class="input-group mb-2 " style="width: 500px" class="mx-auto")
-                    label(for="email" style="width: 200px;" class="input-group-text") email
-                    input.form-control(type="text", name="email", id="email")
+                    label(for="email" style="width: 200px; background-color: 2a6e6b;color:white" 
+                        class="input-group-text") email
+                    input.form-control(type="text", name="email", 
+                        id="email", style="border:2px solid #2a6e6b")
                 br
                 div(class="d-grid gap-2 col-2 mx-auto")
                     button(type="submit" class="btn btn-outline-success") Sign Up
+                br
+                div(class="d-grid gap-2 col-2 mx-auto" style="width: 400px")
+                    a(href="/auth/login",class="btn btn-outline-success mx-auto" style="width: 300px") ¿Ya tienes Cuenta Ingresa?
