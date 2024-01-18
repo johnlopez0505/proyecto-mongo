@@ -1,18 +1,14 @@
-html 
-    head 
-        title Bienvenidos
-        
-    body 
-        h1(style="width:50%; margin:auto; text-align:center" ) Bienvenido #{currentUser ? currentUser.username : 'Invitado'} 
-        
+extends layout
 
+block content
+
+    div(style="width:50%; margin:auto;" )
+        h1.mb-5(style="width:50%; margin:auto; text-align:center" ) Bienvenido #{currentUser ? currentUser.username : 'Invitado'} 
+        
         if !currentUser
-            div(style="width:50%; margin:auto;" )
-                ul(style="list-style-type:none;") 
-                    li  
-                        a(href="/auth/login") Sing in 
-                    li 
-                        a(href="/auth/register") Sing up 
+            p(class="d-grid gap-2 col-2 mx-auto")   
+                a(href="/auth/login" class="btn btn-outline-success") Sing in 
+                
         else 
-            p 
-                a(href='/auth/logout') logout
+            p(class="d-grid gap-2 col-2 mx-auto") 
+                a(href='/auth/logout' class="btn btn-outline-success") logout

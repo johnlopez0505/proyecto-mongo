@@ -52,6 +52,10 @@ app.get('/', (req,res)=>{
     res.redirect('/auth');
 })
 
+const alumnoRouter = require('./routes/alumnos');
+
+app.use('/alumno',alumnoRouter)
+
 
 app.listen(process.env.BACKEND_PORT, () => {
     console.log(`Servidor en funcionamiento en el puerto ${process.env.BACKEND_PORT}`);
