@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const User = require('../models/User');
+const alumno = require('../models/Alumno');
 
 router.get("/", (req, res) =>{
     res.render('alumnos/index');
@@ -12,7 +12,7 @@ router.get("/create", (req, res) =>{
 });
 
 router.post("/craete", (req, res) =>{
-    res.render('alumnos/index');
+    //res.render('alumnos/index');
 });
 
 
