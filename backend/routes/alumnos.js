@@ -1,20 +1,68 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const alumno = require('../models/Alumno');
+const Alumno = require('../models/Alumno');
+const { findById } = require('../models/User');
 
-router.get("/", (req, res) =>{
-    res.render('alumnos/index');
+// muestra en una tabla la lista de alumnos
+router.get('/', async(req, res) => {
+    const listado = await Alumno.find({});
+    res.render('alumnos/index', {alumnos: listado});
 });
 
-router.get("/create", (req, res) =>{
-    res.render('alumnos/create');
+// muestra el formulario alta alumno
+router.get('/create', (req, res) =>{
+    res.render('alumnos/create')
 });
 
-router.post("/craete", (req, res) =>{
-    //res.render('alumnos/index');
+// guarda el alumno en la BBDD
+router.post('/create', async(req, res) =>{
+    const {nombre, apellido, telefono, email} = req.body;
+    const alumno = new Alumno({
+        nombre: nombre,
+        apellido: apellido,
+        telefono: telefono,
+        email: email
+    });
+    try {
+        await alumno.save();
+        res.redirect('/alumnos');
+    } catch (error) {
+        res.render('mensaje', {mensajePagina: 'ERROR: ' + 
+            'El correo electrónico o el teléfono proporcionado ya existía en la base de datos.'});
+    }
 });
 
+ // Obtener un alumno por su ID
+router.get('/edit/:_id', async(req, res) => {
+    try {
+        const alumno = await alumno.findById(req.params._id);
+        if(alumno)
+            res.render('/alumnos/edit',{alumno:alumno});
+        else
+            res.render('mensaje',{mensaje:'No encuentro el alumno en la base de datos'});
+        
+    } catch (error) {
+        res.render('mensaje',{mensaje: 'Error a buscar ese alumno'})
+    }
+});
 
+router.post('/alumnos-edit/:id', (req, res) => {
+    const alumnoId = req.params.id;
+    // Actualizar un alumno por su ID
+    const { nombre, apellido, email, telefono } = req.body;
+    db.query(`UPDATE alumno SET 
+                nombre = ?, 
+                apellido = ?, 
+                email = ?, 
+                telefono = ?  
+                WHERE id = ?`,
+            [nombre, apellido, email, telefono, alumnoId], (err, result) => {
+    if (err)
+        res.render("error", {mensaje: err});
+    else
+        res.redirect('/alumnos');
+    });
+});
 
-module.exports = router;
+module.exports=router;

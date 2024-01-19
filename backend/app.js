@@ -44,21 +44,20 @@ app.use((req, res, next) => {
 // nos conectamos a la base de datos 
 mongoose.connect(process.env.MONGO_URI);
 
-const authRouter = require('./routes/auth');
 
-app.use('/auth',authRouter);
 
-app.get('/', (req,res)=>{
+// añadimos las rutas de AUTH.JS
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
+// añadimos las rutas de ALUMNOS.JS
+const alumnoRoutes = require('./routes/alumnos');
+app.use('/alumnos', alumnoRoutes);
+
+// por defecto vamos a /auth
+app.get('/', (req, res) => {
     res.redirect('/auth');
-})
+});
 
-const alumnoRouter = require('./routes/alumnos');
-
-app.use('/alumno',alumnoRouter)
-
-app.get('/', (req,res)=>{
-  res.redirect('/alumnos');
-})
 
 
 app.listen(process.env.BACKEND_PORT, () => {

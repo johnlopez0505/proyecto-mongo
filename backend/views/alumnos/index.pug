@@ -1,5 +1,36 @@
 extends ../layout
 
+
 block content
-    div.container 
-        a(href="/alumnos/create") Crear un nuevo alumno
+    
+    div.container(class="mx-auto" style="width: 60%; margin-top: 30px;")
+        h1(class="text-center") Lista de Alumnos 
+        table.mb-0(class="table table-success table-hover mx-auto" style="width: 100%") 
+            thead  
+                tr
+                    th(class="text-center border-end" style="width: 30px;background-color: #9bb78e") #
+                    th(class="text-center border-end" style="width: 250px;background-color: #9bb78e") Nombre
+                    th(class="text-center border-end " style="width: 300px;background-color: #9bb78e") Email
+                    th(class="text-center border-end" style="width: 100px;background-color: #9bb78e") Teléfono  
+                    th(class="text-center" style="background-color: #9bb78e") Acciones
+        div(style="overflow-y: auto; max-height: 250px;")
+            table.mb-0(class="table table-success table-hover mx-auto" style="width: 100%") 
+                tbody 
+                    each alumno, index in alumnos 
+                        tr
+                            td.border-end(style="width: 30px;background-color: #9bb78e" class="align-middle text-center")= index+1 
+                            td.border-end(style="width: 250px;" class="align-middle")= `${alumno.nombre} ${alumno.apellido}` 
+                            td.border-end(style="width: 300px;" class="align-middle")= alumno.email  
+                            td.border-end(style="width: 100px;" class="align-middle")= alumno.telefono  
+                            td(class="text-center")
+                                a(href=`/alumnos/edit/${alumno.id}` class="btn btn-outline-success") Editar 
+                                a.ms-1(href=`/alumnos/delete/${alumno.id}` class="btn btn-outline-success") Eliminar 
+        table(class="table table-success table-hover mx-auto" style="width: 100%") 
+            tfoot
+                td(class="text-center border-end" style="background-color: #9bb78e;") Cantidad total de alumnos
+                td(class="text-center" style="background-color: #E0F7FA;")= alumnos.length
+
+    div(class="d-grid gap-2 col-2 mx-auto" style="margin-top: 30px;")
+        p(class="mx-auto") 
+            a(href='/alumnos/create' class="btn btn-outline-success") Agregar Nuevo Alumno
+            br
