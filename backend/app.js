@@ -52,6 +52,15 @@ app.use('/auth', authRoutes);
 // añadimos las rutas de ALUMNOS.JS
 const alumnoRoutes = require('./routes/alumnos');
 app.use('/alumnos', alumnoRoutes);
+//añadimos las rutas de profesores.js
+const profesorRoutes = require('./routes/profesores');
+app.use('/profesores',profesorRoutes);
+//añadimos las rutas de las asignaturas.js
+const asignaturaRoutes = require('./routes/asignaturas');
+app.use('/asignaturas',asignaturaRoutes);
+//añadimos las rutas de las matriculas.js
+const matriculasRoutes = require('./routes/matriculas');
+app.use('/matriculas',matriculasRoutes);
 
 // por defecto vamos a /auth
 app.get('/', (req, res) => {

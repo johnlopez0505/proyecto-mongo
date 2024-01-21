@@ -3,7 +3,7 @@ extends ../layout
 
 block content
     
-    div.container(class="mx-auto" style="width: 60%; margin-top: 30px;")
+    div.container(class="mx-auto" style="width: 75%; margin-top: 30px;")
         h1(class="text-center") Lista de Alumnos 
         table.mb-0(class="table table-success table-hover mx-auto" style="width: 100%") 
             thead  
@@ -14,7 +14,7 @@ block content
                     th(class="text-center border-end" style="width: 100px;background-color: #9bb78e") Teléfono  
                     th(class="text-center" style="background-color: #9bb78e") Acciones
         div(style="overflow-y: auto; max-height: 250px;")
-            table.mb-0(class="table table-success table-hover mx-auto" style="width: 100%") 
+            table.mb-0(class="table table-success  table-hover mx-auto" style="width: 100%") 
                 tbody 
                     each alumno, index in alumnos 
                         tr
@@ -23,8 +23,8 @@ block content
                             td.border-end(style="width: 300px;" class="align-middle")= alumno.email  
                             td.border-end(style="width: 100px;" class="align-middle")= alumno.telefono  
                             td(class="text-center")
-                                a(href=`/alumnos/edit/${alumno.id}` class="btn btn-outline-success") Editar 
-                                a.ms-1(href=`/alumnos/delete/${alumno.id}` class="btn btn-outline-success") Eliminar 
+                                a(href=`/alumnos/edit/${alumno._id}` class="btn btn-outline-success") Editar 
+                                a.ms-1(href=`/alumnos/delete/${alumno._id}` class="btn btn-outline-success") Eliminar 
         table(class="table table-success table-hover mx-auto" style="width: 100%") 
             tfoot
                 td(class="text-center border-end" style="background-color: #9bb78e;") Cantidad total de alumnos
