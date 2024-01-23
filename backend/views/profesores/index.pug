@@ -7,16 +7,16 @@ block content
             table.mb-0(class="table table-success table-hover mx-auto" style="width: 100%") 
                 thead  
                     tr 
-                        th.bg-success.bg-gradient(class="text-center border-end" style="width: 30px;") #
-                        th.bg-success.bg-gradient(class="text-center border-end" style="width: 300px;") Nombre
-                        th.bg-success.bg-gradient(class="text-center border-end " style="width: 300px;") Email
-                        th.bg-success.bg-gradient(class="text-center") Acciones
+                        th(class="text-center border-end" style="width: 30px; background-color: #9bb78e") #
+                        th(class="text-center border-end" style="width: 300px; background-color: #9bb78e") Nombre
+                        th(class="text-center border-end " style="width: 300px; background-color: #9bb78e") Email
+                        th(class="text-center" style="background-color: #9bb78e") Acciones
             div(style="overflow-y: auto; max-height: 250px;")
                 table.mb-0(class="table table-success table-hover mx-auto" style="width: 100%")
                     tbody 
                         each profesor, index in profesores 
                             tr
-                                td.border-end.bg-success.bg-gradient(style="width: 30px;" class="align-middle text-center")= index+1
+                                td.border-end(style="width: 30px; background-color: #9bb78e" class="align-middle text-center")= index+1
                                 td.border-end(style="width: 300px;" class="align-middle")= `${profesor.nombre} ${profesor.apellido}` 
                                 td.border-end(style="width: 300px;" class="align-middle")= profesor.email
                                 td(class="text-center")
@@ -24,7 +24,7 @@ block content
                                     a.ms-1(href=`/profesores/delete/${profesor._id}` class="btn btn-outline-success") Eliminar
             table(class="table table-success table-hover mx-auto" style="width: 100%") 
                 tfoot
-                    td.bg-success.bg-gradient(class="text-center border-end") Cantidad total de profesores
+                    td(class="text-center border-end" style="background-color: #9bb78e") Cantidad total de profesores
                     td(class="text-center" style="background-color: #E0F7FA;")= profesores.length
         div(class="d-grid gap-2 col-2 mx-auto") 
             p(class="mx-auto") 

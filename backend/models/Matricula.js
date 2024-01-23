@@ -3,12 +3,15 @@ const mongoose = require('mongoose');
 // definir el esquema matricula
 const matriculaSchema = new mongoose.Schema({
     alumno: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Alumno'
+        nombre:   { type: String, unique: false, required: true},
+        apellido: { type: String, unique: false, required: true},
+        email:    { type: String, unique: true,  required: true},
+        telefono: { type: String, unique: true,  requiere: true}
     },
     asignatura: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Asignatura'
+        nombre:   { type: String, unique: true, required: true },
+        curso:    { type: String, required: true },
+        ciclo:    { type: String, required: true}
     }
 });
 // equivalente a una clase modelo de java

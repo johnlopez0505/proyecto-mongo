@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const Alumno = require('../models/Alumno');
-const { findById } = require('../models/User');
 
 //crud alumno
 // muestra en una tabla la lista de alumnos
@@ -81,13 +80,8 @@ router.get('/delete/:id', async(req, res) => {
 router.post('/delete/:id',async (req, res) => {
     const alumnoId = req.params.id;
    
-    const { nombre, apellido, email, telefono } = req.body;
-
-    //console.log({alumno});
-    //console.log(apellido);
-   
     try {
-        await Alumno.findByIdAndDelete(alumnoId, { nombre, apellido, email, telefono }, { new: true });
+        await Alumno.findByIdAndDelete(alumnoId);
         res.redirect('/alumnos');
     } catch (error) {
         res.render('mensaje', {mensajePagina: 'ERROR: '});
